@@ -1,0 +1,67 @@
+aserver:
+  port: ${SERVER_PORT:8080}
+
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - PATCH
+      routes:
+        - id: users-service-users
+          uri: lb://users-service
+          predicates:
+            - Path=/users/**
+          filters:
+            - RewritePath=/users/(?<path>.*), /users/$\{path}
+        - id: users-service-departments
+          uri: lb://users-service
+          predicates:
+            - Path=/departments/**
+          filters:
+            - RewritePath=/departments/(?<path>.*), /departments/$\{path}
+        - id: users-service-password
+          uri: lb://users-service
+          predicates:
+            - Path=/password/**
+          filters:
+            - RewritePath=/password/(?<path>.*), /password/$\{path}
+        - id: authentication-service
+          uri: lb://authentication-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<path>.*), /$\{path}
+        - id: projects-service
+          uri: lb://projects-service
+          predicates:
+            - Path=/projects/**
+          filters:
+            - RewritePath=/projects/(?<path>.*), /projects/$\{path}
+        - id: projects-service-clients
+          uri: lb://projects-service
+          predicates:
+            - Path=/clients/**
+          filters:
+            - RewritePath=/clients/(?<path>.*), /clients/$\{path}
+
+eureka:
+  client:
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: ${REGISTRY_URL}
