@@ -10,7 +10,7 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:secret}
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${DATABASE_URL: jdbc:mysql://localhost:3336/USERS_DB?createDatabaseIfNotExist=true&serverTimezone=UTC}
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3336/USERS_DB?createDatabaseIfNotExist=true&serverTimezone=UTC}
   jpa:
     hibernate:
       ddl-auto: none
@@ -20,7 +20,7 @@ spring:
     generate-ddl: false
     show-sql: true
   mail:
-    #Login: beontime@gmail.com
+    #Login: beontime.test@gmail.com
     #Pass: Qazwsx12#
     host: smtp.gmail.com
     port: 587
@@ -45,3 +45,6 @@ jwt:
 
 authentication:
   publicUrls: "/login,/password"
+
+administration:
+  email: "beontime.test@gmail.com"
