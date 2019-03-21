@@ -10,7 +10,7 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:secret}
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${DATABASE_URL: jdbc:mysql://localhost:3336/USERS_DB?createDatabaseIfNotExist=true&serverTimezone=UTC}
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3336/USERS_DB?createDatabaseIfNotExist=true&serverTimezone=UTC}
   jpa:
     hibernate:
       ddl-auto: none
@@ -36,7 +36,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${REGISTRY_URL}
+      defaultZone: ${REGISTRY_URL:http://localhost:8761/eureka/}
 
 jwt:
   config:

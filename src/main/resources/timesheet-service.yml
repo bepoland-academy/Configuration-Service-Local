@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8088}
 
 spring:
   application:
@@ -7,10 +7,10 @@ spring:
   liquibase:
     change-log: classpath:db/changelog.xml
   datasource:
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:secret}
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${DATABASE_URL}
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3336/TIMESHEET_DB?createDatabaseIfNotExist=true&serverTimezone=UTC}
   jpa:
     hibernate:
       ddl-auto: none
@@ -22,7 +22,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${REGISTRY_URL}
+      defaultZone: ${REGISTRY_URL:http://localhost:8761/eureka/}
 jwt:
   config:
     expirationTime: 3600000
