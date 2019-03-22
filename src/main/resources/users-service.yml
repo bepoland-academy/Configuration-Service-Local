@@ -10,7 +10,7 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:secret}
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${DATABASE_URL:jdbc:mysql://localhost:3336/USERS_DB?createDatabaseIfNotExist=true&serverTimezone=UTC}
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3336/USERS_DB?createDatabaseIfNotExist=true&serverTimezone=CET}
   jpa:
     hibernate:
       ddl-auto: none
