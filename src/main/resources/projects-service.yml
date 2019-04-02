@@ -22,7 +22,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${REGISTRY_URL}
+      defaultZone: ${REGISTRY_URL:http://localhost:8761/eureka/}
 jwt:
   config:
     expirationTime: 3600000
